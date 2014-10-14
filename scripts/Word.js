@@ -1,19 +1,24 @@
-﻿// GLOBAL HELPERS
+﻿/* TODO: refactor
+move these into somewhere else and/or other class out of the global namesapce
+// can make into prototype obj eg
+var _  = self.WordHelper = function(){}
+_.prototype = {
+  createEditorTemplate = function(text,tag){ ... },
+  createDisplayTemplate = function(text,tag) { ... },
+  createWordDataObj = fucntion(text,tag){ ... } // <- move uid gen logic into here?
+}
 
-String.prototype.initCap = function () {
-    return this.toLowerCase().replace(/(?:^|\s)[a-z]/g, function (m) {
-        return m.toUpperCase();
-    });
-};
+*/
 
-var ID = function () {
-    // Math.random should be unique because of its seeding algorithm.
-    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-    // after the decimal.
-    return '_' + Math.random().toString(36).substr(2, 9);
-};
+//Word JS Object   
+var Word = function (tag, text, uid) {
+    this.tag = tag;
+    this.text = text;
+    this.uid = uid;
+}
 
 
+//Word Template 
 var wordTemplate = function (text, tag) {
 
     if (!tag) {
@@ -40,6 +45,7 @@ var wordTemplate = function (text, tag) {
 
 };
 
+//Word Display Template
 var wordDisplayTemplate = function (tag, text) {
     var template =
         '<span class="word-ph" >' +
@@ -49,21 +55,3 @@ var wordDisplayTemplate = function (tag, text) {
 
     return template;
 }
-
-var Word = function (tag,text,uid) {
-    this.tag = tag;
-    this.text = text;
-    this.uid = uid;
-}
-
-String.prototype.startsWithVowel = function () {
-    
-    var chr = this.substring(0, 1).toUpperCase();
-         
-    return chr == 'A' |
-           chr == 'E' |
-           chr == 'I' |
-           chr == 'O' |
-           chr == 'U';
-};
-    

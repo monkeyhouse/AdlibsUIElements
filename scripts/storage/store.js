@@ -27,6 +27,11 @@
           
             var html = htmlCache.get();
 
+            if (!html) {
+                this.set([]);
+                return;
+            }
+
             var wordRegex = /<[ ]*word[^>]+>/g;
             var wordTags = html.match(wordRegex);
 
@@ -43,8 +48,7 @@
                 words.push(new Word(tag, '', uid));
 
             }
-            this.set(words);
-            //return words;
+            this.set(words);          
         },
         get: function () {
             return localStorageService.get(wordsStoreKey);

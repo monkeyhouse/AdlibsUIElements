@@ -19,7 +19,7 @@ angular.module('prototype', ['textAngular', 'localStore'])
             }
 
             //init local vars
-            me.orightml = '<h2>Try me!</h2><p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p><p></p><p><b>Features:</b></p><ol><li>Automatic Seamless Two-Way-Binding</li><li>Super Easy <b>Theming</b> Options</li><li style="color: green;">Simple Editor Instance Creation</li><li>Safely Parses Html for Custom Toolbar Icons</li><li class="text-danger">Doesn&apos;t Use an iFrame</li><li>Works with Firefox, Chrome, and IE8+</li></ol><p><b>TextAngular Code at GitHub:</b> <a href="https://github.com/fraywing/textAngular">Here</a> </p>';
+            me.orightml = '<h2><word tag="Verb" text="placeholder" uid="_acw59w877"><span class="word-ph"><span class="word-nt">placeholder</span><span class="word-ht">Verb</span></span></word> me!</h2><p>I pledge allegiance to the <word tag="Noun" text="placeholder" uid="_klna3vu3l"><span class="word-ph"><span class="word-nt">placeholder</span><span class="word-ht">Noun</span></span></word>  of the <word tag="Noun" text="placeholder" uid="_t7a1d3zwt"><span class="word-ph"><span class="word-nt">placeholder</span><span class="word-ht">Noun</span></span></word> , and to the Republic for which it stands, one Nation <word tag="Preposition" text="placeholder" uid="_fohgsgdsr"><span class="word-ph"><span class="word-nt">placeholder</span><span class="word-ht">Preposition</span></span></word> God, indivisible, with liberty and <word tag="Plural Noun" text="placeholder" uid="_z2l595nqv"><span class="word-ph"><span class="word-nt">placeholder</span><span class="word-ht">Plural Noun</span></span></word> for all.</p><p><b>Features:</b></p><ol><li>Automatic Seamless Two-Way-Binding</li><li><word tag="Adjective" text="placeholder" uid="_lhexnk7tn"><span class="word-ph"><span class="word-nt">placeholder</span><span class="word-ht">Adjective</span></span></word>  <b>Theming</b> Options</li><li style="color: green;">Simple Editor Instance Creation</li><li>Safely Parses Html for Custom Toolbar Icons</li><li class="text-danger">Doesn\'t Use an iFrame</li><li>Works <word tag="Preposition" text="placeholder" uid="_wq8js9ydo"><span class="word-ph"><span class="word-nt">placeholder</span><span class="word-ht">Preposition</span></span></word> Firefox, Chrome, and IE8+</li></ol><p><b>TextAngular Code at GitHub:</b> <a href="https://github.com/fraywing/textAngular">Here</a></p> <p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p>';
             me.revertHtml();
             me.disabled = false;
 
@@ -70,7 +70,10 @@ angular.module('prototype', ['textAngular', 'localStore'])
                 return me.wordIndex < 1;
             }
 
-            me.updateArticle = function() {
+            me.updateArticle = function () {
+                if (!me.words || !me.words[me.wordIndex])
+                    return 'a';
+
                 var word = me.words[me.wordIndex].tag;
                 me.A_or_AN_Article = word.startsWithVowel() ? 'an' : 'a';
             }
