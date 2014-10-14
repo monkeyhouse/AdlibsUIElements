@@ -1,0 +1,76 @@
+﻿
+#Editor {
+    /*font-family: "Lucida Console", Monaco, monospace;*/
+    font-size: 16px;
+}
+
+#Display {
+    border: 1px solid grey;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+
+.word {
+    display: inline-block;
+}
+.word-ph {
+    display:inline-block;
+    vertical-align:top;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    position: relative;
+	display: inline-block;
+	padding: 1px .5em;   
+}
+
+.word-nt {
+    color:rgb(140,200,200);
+    float: left;
+    padding: 0;
+    margin: 0 3px;
+    padding-right: 10px;
+    padding-left: 5px;
+    white-space:nowrap;
+    word-wrap:normal;
+    position: relative;
+
+}
+
+
+.word-ht {
+    text-align:center;
+    color:green;
+    font-variant:small-caps;
+    text-transform: lowercase;
+    font-weight:bold;
+    float:right;
+    padding-left: 2px;
+    vertical-align: baseline;
+    border-left: 1px dashed blue;
+}
+
+/* hack to prevent word-adding from splitting lines*/
+#Editor h1, #Display h1,
+#Editor h2, #Display h2,
+#Editor p,  #Display p,
+#Editor div #Display div 
+{
+    display: inline-block;
+}
+
+#Editor h1:after,  #Editor h2:after , #Editor p:after,
+#Display h1:after, #Display h2:after , #Display p:after
+ {
+    clear:both;
+    content: ' ';
+    height: 1px;
+    width:600px;
+    display: block;
+}
+
+text-angular-toolbar .btn-group > span {
+    padding: 0;
+    border:0
+}
+

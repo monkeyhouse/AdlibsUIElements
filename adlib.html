@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>textAngular 1.2.2 Demo</title>
+    <meta name="robots" content="noindex">
+
+    <!-- Global Layout -->
+    <link href="/libs/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/libs/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="/site.css" rel="stylesheet" />
+
+    <!-- Page Styles -->
+    <link href="custom/main.css" rel="stylesheet" />
+
+    <!-- Component Styles -->
+
+</head>
+<body class="container" ng-app="prototype" ng-controller="scrollController">
+
+    <h1> Adlib UI Prototype</h1>
+
+
+        <h2>Contents</h2>
+        <ul>
+            <li><a href="##Editor">Editor</a></li>
+            <li><a href="##Preview">Editor Preview</a></li>
+            <li><a href="##FillIn">Fill In Some Words</a></li>
+            <li><a href="##Reveal">Reveal</a></li>
+        </ul>
+  
+
+    <div ng-controller="taEditor">
+
+        <div class="panel panel-default" id="Editor">
+            <div class="panel-heading">
+
+
+                <span class="lead">TextAngular Editor</span>
+
+
+                <span class="btn-group pull-right">
+                    <button class="btn btn-primary btn-primary" ng-click="saveHtml()">Save</button>
+                    <button class="btn btn-default btn-default" ng-click="revertHtml()">Reset</button>
+                    <button class="btn btn-default btn-link" ng-click="resetHtml()"> Default</button>
+                </span>
+
+
+
+
+
+            </div>
+
+            <div class="panel-body">
+
+
+
+                <text-angular-toolbar name="toolbar"
+                                      ta-toolbar="[['h1','p','quote'],['bold' , 'italics', 'clear'],['undo', 'redo'],['ol','ul','insertLink'], ['customPlaceholder','placeholder']]"></text-angular-toolbar>
+
+                <text-angular id="EditorContent" ta-target-toolbars='toolbar' name="htmlcontent" ng-model="htmlcontent" ta-disabled='disabled'>
+                </text-angular>
+
+
+            </div>
+
+        </div>
+
+
+        <div id="Preview" class="panel panel-default">
+
+            <div class="panel-heading">
+                <span class="lead">TextAngular Preview</span>
+            </div>
+            <div class="panel-body">
+
+                <div id="Display" ta-bind="text" ng-model="htmlcontent" ta-readonly='disabled'></div>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="FillIn" ng-controller="fillIn" class="panel panel-default">
+
+        <div class="panel-heading">
+            <span class="lead">Fill In Some Words</span>
+            <span class="btn-group pull-right">
+                <button class="btn btn-default btn-link" ng-click="loadWords()"> Refresh Words </button>
+            </span>
+        </div>
+        <div class="panel-body ">
+
+            <div class="row container">
+
+                <div class="col-md-6">
+                    <form ng-submit="nextWord()" class="form-horizontal" role="form">
+                        <!--<enter-word></enter-word>-->
+
+                        <div class="form-group">
+                            <label for="fillInputTx" class="control-label">
+                                Enter {{A_or_AN_Article}} {{words[wordIndex].tag}}
+                            </label>
+                            <input id="fillInputTx" type="text" ng-model="words[wordIndex].text" class="form-control" />
+
+                        </div>
+                    </form>
+
+
+                    <div class="btn-group btn-group-justified ">
+                        <div class="btn-group">
+
+                            <button type="button" ng-disabled="isNotPrev()" ng-click="prevWord()" class="btn btn-default">Previous</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" ng-disabled="isNotNext()" ng-click="nextWord()" class="btn btn-default">Next</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+
+
+
+                    <div class="lead">{{wordsLeft}} Words Left</div>
+                    <div ng-show="wordsLeft == 0 && words[wordIndex].text.length > 0 ">
+                        <a href="##Reveal" class="btn btn-info btn-lg" ng-click="done()">Done</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="Reveal" class="panel panel-default" ng-controller="reveal">
+
+        <div class="panel-heading">
+            <span class="lead">The Reveal</span>
+        </div>
+        <div class="panel-body">
+            <button class="btn btn-lg btn-primary" ng-click="showResults()"> Generate Results </button>
+
+            <div id="Display" ng-hide="resultContent.length < 1" ta-bind="text" ng-model="resultContent">
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery, Bootstrap, Angular -->
+    <script src="libs/jquery.min.js"></script>
+    <script src="/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="/libs/angular.min.js"></script>
+
+
+    <!-- My Angular Modules-->
+    <script src="custom/Ghelpers.js"></script>
+    <script src="custom/wordDirectives.js"></script>
+    <script src="custom/main/module.js"></script>
+    <script src="custom/main/config.js"></script>
+    <script src="custom/storage/store.js"></script>
+
+    <!-- TextAngular Libs-->
+    <script src="libs/ng/textAngular/textAngular.js"></script>
+    <script src="libs/ng/textAngular/textAngularSetup.js"></script>
+    <script src="libs/ng/textAngular/textAngular-sanitize.js"></script>
+    <script src="libs/ng/textAngular/textAngular-dropdownToggle.js"></script>
+    <script src="libs/ng/angular-local-storage.js"></script>
+</body>
+</html>
